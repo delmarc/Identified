@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Identified</title>
+        <script src="js/Identified.js"></script>
+    </head>
+    <body>
+
+        <h1>Identified...</h1>
+        <p>code that is code that makes code</p>
+
+        <script>
+        var sampleFunc = Identified.createFunction({
+            arguments:["some","fun"],
+            execution:[
+                (function(){
+                    console.log(arguments,this);
+                }("it should add 1 to some"))
+            ],
+            returnProperties:{
+                returnStatement: function(){
+                    return some+fun;
+                },
+                returnType:"Number"
+            }
+        });
+
+        console.log(sampleFunc);
+        </script>
+
+    </body>
+</html>
