@@ -48,7 +48,13 @@
     function createFunction (newFunctionObj){
         newFunctionObj = newFunctionObj || {};
 
-        console.log(newFunctionObj.execution)
+        var context = newFunctionObj;
+
+        for(var i=0;i<newFunctionObj.execution.length;i++){
+            newFunctionObj.execution[i].code.apply(newFunctionObj,newFunctionObj.arguments);
+        }
+
+
 
         /*
             so the properties that I expect are 
@@ -77,7 +83,10 @@
 
         */
 
-        return new Function(newFunctionObj.arguments, "console.log('i was called',arguments); return "+newFunctionObj.returnProperties.returnStatement+"()");
+        var newFunc = new Function(newFunctionObj.arguments, "console.log('i was',this);console.log('i was called',arguments); return "+newFunctionObj.returnProperties.returnStatement);
+        console.log(newFunc);
+        return newFunc.apply(newFunctionObj,newFunctionObj.arguments);
+        //return new Function(newFunctionObj.arguments, "console.log('i was',this);console.log('i was called',arguments); return "+newFunctionObj.returnProperties.returnStatement+"()");
     }
     function createObject (){
     }

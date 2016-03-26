@@ -11,22 +11,40 @@
         <p>code that is code that makes code</p>
 
         <script>
+                /*
+                    assert.throws(
+                        function(){
+                            Objectified.render({});
+                        }, function(err){
+                            if( err instanceof Error ){
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        },"oh no you gave me an empty object");
+                */
+
+
         var sampleFunc = Identified.createFunction({
             arguments:["some","fun"],
             execution:[
-                (function(){
-                    console.log(arguments,this);
-                }("it should add 1 to some"))
+                {
+                    lineStatement:"it should add 1 to some",
+                    code:function(){
+                        console.log(this,"Oh ok");
+                        return this;
+                    }
+                }
             ],
             returnProperties:{
-                returnStatement: function(){
+                returnStatement: function(args){
+
+                    console.log(this,arguments);
                     return some+fun;
                 },
                 returnType:"Number"
             }
         });
-
-        console.log(sampleFunc);
         </script>
 
     </body>
